@@ -1,4 +1,5 @@
 import java.awt.image.*;
+import java.util.Iterator;
 
 /**
  * Provides an interface to a picture as an array of Pixels
@@ -96,4 +97,15 @@ public class PixelImage {
 	}
 
 	// add a method to compute a new image given weighted averages
+    public Pixel[][] getWeightedImage(int weight){
+        Pixel[][] master = getData();
+        Pixel[][] altered = master;
+
+        for (Pixel[] pixels : altered) {
+            for (Pixel pixel : pixels) {
+                pixel.red *= Math.random();
+            }
+        }
+        return altered;
+    }
 }

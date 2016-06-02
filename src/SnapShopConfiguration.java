@@ -21,5 +21,6 @@ public class SnapShopConfiguration {
 		// add your other filters below
 		theShop.addFilter(new FlipVerticalFilter(), "Flip Vertical");
 		theShop.addFilter(new NegativeFilter(),"Negative Filter");
+		theShop.addFilter(new LaplacianFilter(),"Laplacian Filter");
 	}
 }
