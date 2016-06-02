@@ -4,9 +4,14 @@
  */
 public class LaplacianFilter implements Filter{
     public void filter(PixelImage theImage) {
-        Pixel[][] data = theImage.getData();
 
-        theImage.setData(theImage.getWeightedImage(8));
+        int[][] weights = {
+                {-1, -1,-1},
+                {-1, 8, -1},
+                {-1, -1, -1}};
+        Pixel[][] data = theImage.computeWeightedAverages(theImage, weights, true);
+
+        theImage.setData(data);
 
     }
 }
