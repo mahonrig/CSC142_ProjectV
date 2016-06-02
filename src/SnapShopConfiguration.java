@@ -3,8 +3,8 @@
 /**
  * A class to configure the SnapShop application
  * 
- * @author (your name)
- * @version (a version number or a date)
+ * @author Thunder Tiger Ninjas
+ * @version 0.0.9
  */
 public class SnapShopConfiguration {
 	/**
@@ -16,9 +16,11 @@ public class SnapShopConfiguration {
 	 */
 	public static void configure(SnapShop theShop) {
 
-		theShop.setDefaultFilename("c:/hw5/billg.jpg");
+		theShop.setDefaultFilename("c:/");
 		theShop.addFilter(new FlipHorizontalFilter(), "Flip Horizontal");
 		// add your other filters below
 		theShop.addFilter(new FlipVerticalFilter(), "Flip Vertical");
+		theShop.addFilter(new UnsharpFilter(), "Unsharp Mask");
+		theShop.addFilter(new EdgyFilter(), "Edgy");
 	}
 }
