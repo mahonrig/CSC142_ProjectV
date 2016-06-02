@@ -96,4 +96,65 @@ public class PixelImage {
 	}
 
 	// add a method to compute a new image given weighted averages
+	public Pixel[][] computeWeightedAverages(PixelImage pi, int[][] weights, boolean divide16){
+		Pixel[][] data = pi.getData();
+		Pixel[][] newData = data;
+		
+		// iterate through pixels
+		for (int row = 0; row < pi.getHeight(); row++) {
+			for (int col = 0; col < pi.getWidth(); col++) {
+				// store current pixel
+				Pixel temp = data[row][col];
+				// for computing averages
+				int red = 0, green = 0, blue = 0;
+				// iterate through weights and adjacent pixels
+				for (int i = 0; i < 3; i++){
+					for (int j = 0; j < 3; j++){
+						// need to ensure we stay within bounds of array
+						if ((row-1+i) >= 0 && 
+							(col-1+j) >= 0 && 
+							(row-1+i) < pi.getHeight() && 
+							(col-1+j) < pi.getWidth()){
+								// add each adjacent pixel, multiplied by its corresponding weight
+								red += data[(row-1+i)][(col-1+j)].red * weights[i][j];
+								green += data[(row-1+i)][(col-1+j)].green * weights[i][j];
+								blue += data[(row-1+i)][(col-1+j)].blue * weights[i][j];
+						}
+					}
+				}
+				// passed in if pixels will need divided by 16
+				if (divide16){
+					temp.red = red / 16;
+					temp.green = green / 16;
+					temp.blue = blue / 16;
+				} else {
+					temp.red = red;
+					temp.green = green;
+					temp.blue = blue;
+				}
+				// correct any out of bounds
+				if (temp.red > 255){
+					temp.red = 255;
+				}
+				if (temp.green > 255){
+					temp.green = 255;
+				}
+				if (temp.blue > 255){
+					temp.blue = 255;
+				}
+				if (temp.red < 0){
+					temp.red = 0;
+				}
+				if (temp.green < 0){
+					temp.green = 0;
+				}
+				if (temp.blue < 0){
+					temp.blue = 0;
+				}
+				// assign our new pixel data
+				newData[row][col] = temp;
+			}
+		}
+		return newData;
+	}
 }
