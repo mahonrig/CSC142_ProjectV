@@ -20,6 +20,9 @@ public class SnapShopConfiguration {
 		theShop.addFilter(new FlipHorizontalFilter(), "Flip Horizontal");
 		// add your other filters below
 		theShop.addFilter(new FlipVerticalFilter(), "Flip Vertical");
+		theShop.addFilter(new NegativeFilter(), "Negative Filter");
+		theShop.addFilter(new LaplacianFilter(), "LaplacianFilter");
+		theShop.addFilter(new GaussianFilter(), "Gaussian Filter");
 		theShop.addFilter(new UnsharpFilter(), "Unsharp Mask");
 		theShop.addFilter(new EdgyFilter(), "Edgy");
 	}
